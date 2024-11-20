@@ -1,0 +1,178 @@
+#include <stdio.h>
+
+ int main (void) {
+  float sal = 0, salbruto = 0, salbrutotaxas = 0, saliqui = 0, impostorenda = 0, inss = 0, impostos = 0, adicivaletransp = 0, adicihoraextra = 0, adicinoturn = 0, adicinsalub = 0, adicipericulo = 0, adicibonificacao = 0 ,adicicontrat = 0;
+  int areatrab = 0,jornada = 0,trabinsalu = 0,niveinsalu = 0,trabpericulo = 0,trabnotur = 0,auxcontratual = 0,salariohora = 0, horasextras = 0, bonificacao = 0, valtransp = 0, qthorasextras = 0;
+
+   printf("Informe seu salário base: ");
+   scanf(" %f", &sal);
+
+  //Somas
+ 
+  if (sal >= 1412) {
+   printf("Qual sua jornada de trabalho semanal(em horas)? \n");
+   scanf(" %i", &jornada);}
+else {
+  printf(" Salário abaixo do mínimo, impossível realizar o cálculo \n");
+   return 0;
+}    
+if (jornada > 0){
+   salariohora = sal/jornada * 5;
+}
+    
+    printf("Realizou horas extras esse mês? \n Não = 0 \n Sim = 1 \n");
+    scanf(" %i", &horasextras);
+   if (horasextras == 0){
+       adicihoraextra = 0;
+    }  
+   if (horasextras == 1) {
+       printf("Quantas horas extras realizou? \n");
+       scanf(" %i", &qthorasextras);
+       
+       adicihoraextra = salariohora * 0.5 * qthorasextras;
+    }
+else{}
+    
+     printf("Trabalha em horário noturno?: \n Não = 0 \n Sim = 1 \n");
+   scanf(" %i", &trabnotur);
+
+    if (trabnotur == 0){
+       adicinoturn = 0 * sal;
+    }
+    if (trabnotur == 1) {
+       printf("Trabalha em qual área?: \n 0 - Urbana \n 1 - Rural \n");
+       scanf(" %i", &areatrab);   
+    }
+    else{}
+    if (areatrab == 0) {
+       adicinoturn = sal * 0.2;
+    }
+    if (areatrab == 1) {
+       adicinoturn = sal * 0.25;
+    }
+else{}    
+
+      printf("Possui local de trabalho classificado como insalubre? \n Não = 0 \n Sim = 1 \n");
+      scanf(" %i", &trabinsalu);
+    if (trabinsalu == 0){
+       adicinsalub = 0;
+    }
+    if (trabinsalu == 1) {
+       printf("Qual o nível de insalubridade? \n 0 - Mínimo \n 1 - Médio \n 2 - Máximo \n");
+       scanf(" %i", &niveinsalu);
+    }
+    if (niveinsalu == 0) {
+       adicinsalub = sal * 0.1;
+    }
+    if (niveinsalu == 1) {
+       adicinsalub = sal * 0.2;
+    }
+    if (niveinsalu == 2) {
+       adicinsalub = sal * 0.4;
+    }
+else{}    
+
+    printf("Possui trabalho classificado como de alta periculosidade? \n Não = 0 \n Sim = 1 \n");
+    scanf(" %i", &trabpericulo);
+
+    if (trabpericulo == 0){
+       adicipericulo = 0 * sal;
+    }
+    if (trabpericulo == 1) {
+       adicipericulo = sal * 0.3;
+    }
+    printf("Possui auxílio contratual ou bonificações específicas na empresa já? \n Não = 0 \n Sim = 1 \n");
+    scanf(" %i", &auxcontratual);
+
+    if (auxcontratual == 0){
+       adicicontrat = 0;
+    }
+    if (auxcontratual == 1) {
+       printf("Qual o valor do auxílio contratual? (caso seja uma porcentagem do salário, realize o cálculo sobre o valor do salário e informe o valor inteiro) \n");
+       scanf(" %f", &adicicontrat);
+    }
+else{}
+   
+
+  /* printf("Sua empresa possui bonificações, como por exemplo metas batidas ou melhor desempenho? \n Não = 0 \n Sim = 1 \n");
+    scanf( " %i \n", &bonificacao);
+
+    if (bonificacao == 0){
+       adicibonificacao = 0;
+    }
+    if (bonificacao == 1) {
+       printf("Qual o valor da bonificação? (informe um valor pré-calculado)\n ");
+       scanf(" %f", &adicibonificacao);
+    }
+else{}*/ //mesmo escrito corretamente essa parte n roda
+   
+    
+       
+   salbruto = sal + adicinoturn + adicihoraextra + adicicontrat + adicinsalub + adicipericulo + adicibonificacao;
+  
+     printf("O salário bruto é de: R$%.2f \n", salbruto);
+
+     //Subtrações 
+
+    salbrutotaxas = salbruto;
+
+    printf("Possui vale transporte? \n Não = 0 \n Sim = 1 \n");
+    scanf(" %i", &valtransp);
+    
+    if (valtransp == 0){
+       adicivaletransp = 0;
+    }
+    if (valtransp == 1){
+       adicivaletransp = salbruto * 0.06;
+    }
+else{}
+
+    if (salbrutotaxas <= 2259.20){
+       impostorenda = 0;
+    }
+    if (salbrutotaxas > 2259.20 && salbrutotaxas <= 2826.65){
+       impostorenda = salbrutotaxas * 0.075;
+    }
+    if (salbrutotaxas > 2826.65 && salbrutotaxas <= 3751.05){
+       impostorenda = salbrutotaxas * 0.15;
+    }
+     if (salbrutotaxas > 3751.05 && salbrutotaxas <= 4664.68){
+        impostorenda = salbrutotaxas * 0.225;
+    }
+     if (salbrutotaxas > 4664.68){
+        impostorenda = salbrutotaxas * 0.275;
+     }
+else{}
+
+       
+     if (salbrutotaxas == 1412){
+        inss = salbrutotaxas * 0.075;
+     }
+     if (salbrutotaxas > 1412 && salbrutotaxas <= 2666.69){
+        inss = salbrutotaxas * 0.09;
+     }
+     if (salbrutotaxas > 2666.69 && salbrutotaxas <= 4000.03){
+        inss = salbrutotaxas * 0.12;
+     }
+     if (salbrutotaxas > 4000.03 && salbrutotaxas <= 7786.02){
+        inss = salbrutotaxas * 0.14;
+     }
+else{}      
+    
+     printf("O valor do imposto de renda é de: R$%.2f \n",impostorenda);
+
+     printf("O valor do INSS é de: R$%.2f \n",inss);
+
+     printf("O valor do vale transporte é de: R$%.2f \n", adicivaletransp);
+
+    
+     impostos = inss + impostorenda + adicivaletransp;
+    
+     printf("O total de impostos cobrados foi de: R$%.2f \n\n", impostos);
+    
+     saliqui = salbruto - impostorenda - inss - adicivaletransp;
+  
+     printf("Seu salário líquido, retirado o imposto de renda, a taxa do inss (e vale transporte caso obtido) é de: R$%.2f  \n", saliqui);
+
+ return 0;
+ }

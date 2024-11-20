@@ -1,0 +1,66 @@
+#include <stdio.h>
+
+ int main (void) {
+  float sal, saltemp, salgraduacao, salbruto, salbrutotaxas, saliqui, auxalimentacao, impostorenda, iss, impostos;
+  int tempo, graduacao;
+
+   printf("Informe seu salário base: ");
+   scanf(" %f", &sal);
+
+  //Somas
+ 
+  if (sal >= 1412) {
+   printf("Qual seu nível de graduação? \n 0- Ensino superior completo. \n 1- Especialização \n 2- Mestrado \n 3- Doutorado \n");
+   scanf(" %i", &graduacao);}
+else {
+  printf(" Salário abaixo do mínimo, impossível realizar o cálculo \n");
+   return 0;
+}    
+
+   if ( graduacao == 0) {
+(salgraduacao = sal * 0);}
+   
+   if (graduacao == 1) { 
+(salgraduacao = sal * 0.2);}
+   
+   if (graduacao == 2) { 
+(salgraduacao = sal * 0.4);}
+   
+   if (graduacao == 3) {
+(salgraduacao = sal * 0.6);}
+
+else {}   
+ 
+   printf("Informe seu tempo de serviço,em anos: \n");
+   scanf(" %i", &tempo);
+   
+  if ( tempo > 5) {
+(saltemp = sal * (0.01 * tempo));}
+  if ( tempo < 5) {
+(saltemp = sal * 0);}
+   else{}
+
+auxalimentacao = 440;
+
+   salbruto = sal + salgraduacao + auxalimentacao + saltemp;
+  
+     printf("O salário bruto é de: R$%.2f \n\n", salbruto);
+
+     //Subtrações 
+
+    salbrutotaxas = sal + salgraduacao + saltemp;
+    
+     impostorenda = 0.275 * salbrutotaxas;
+ 
+     iss = 0.15 * salbrutotaxas;
+
+     impostos = iss + impostorenda;
+    
+     printf("O total de impostos cobrados foi de: R$%.2f \n\n", impostos);
+    
+     saliqui = salbruto - impostorenda - iss;
+  
+     printf("Seu salário líquido, retirado o imposto de renda e o ISS é de: R$%.2f  \n", saliqui);
+
+ return 0;
+ }
